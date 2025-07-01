@@ -67,8 +67,7 @@ export function TestimonialCarousel() {
         height={200}
         slideSize="100%"
         slideGap="md"
-        loop
-        align="start"
+        // align="start"
       >
         {testimonials.map((testimonial) => (
           <Carousel.Slide key={testimonial.id}>

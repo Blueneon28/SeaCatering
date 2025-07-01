@@ -93,13 +93,13 @@ export function UserDashboard() {
     if (!selectedSubscription) return;
 
     LocalStorage.update("subscriptions", selectedSubscription.id, {
-      status: "cancelled",
+      status: "cancelled" as const,
     });
 
     setSubscriptions((prev) =>
       prev.map((sub) =>
         sub.id === selectedSubscription.id
-          ? { ...sub, status: "cancelled" }
+          ? { ...sub, status: "cancelled" as const }
           : sub
       )
     );
@@ -112,6 +112,14 @@ export function UserDashboard() {
 
     closeCancel();
     setSelectedSubscription(null);
+  };
+
+  const handlePauseFromDateChange = (value: string | null) => {
+    setPauseFromDate(value ? new Date(value) : null);
+  };
+
+  const handlePauseToDateChange = (value: string | null) => {
+    setPauseToDate(value ? new Date(value) : null);
   };
 
   const getStatusColor = (status: string) => {
@@ -212,7 +220,7 @@ export function UserDashboard() {
                     {subscription.status === "paused" &&
                       subscription.pausedFrom &&
                       subscription.pausedTo && (
-                        <Alert color="blue" size="sm">
+                        <Alert color="blue">
                           Paused from {formatDate(subscription.pausedFrom)} to{" "}
                           {formatDate(subscription.pausedTo)}
                         </Alert>
@@ -240,7 +248,7 @@ export function UserDashboard() {
               label="Pause From"
               placeholder="Select start date"
               value={pauseFromDate}
-              onChange={setPauseFromDate}
+              onChange={handlePauseFromDateChange}
               minDate={new Date()}
               leftSection={<IconCalendar size={16} />}
             />
@@ -249,7 +257,7 @@ export function UserDashboard() {
               label="Pause To"
               placeholder="Select end date"
               value={pauseToDate}
-              onChange={setPauseToDate}
+              onChange={handlePauseToDateChange}
               minDate={pauseFromDate || new Date()}
               leftSection={<IconCalendar size={16} />}
             />

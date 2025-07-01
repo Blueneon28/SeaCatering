@@ -32,7 +32,7 @@ import {
   IconAlertCircle,
 } from "@tabler/icons-react";
 import { LocalStorage } from "../utils/storage";
-import type { Subscription, User, DashboardMetrics } from "../types";
+import type { Subscription, DashboardMetrics } from "../types";
 import { formatCurrency, formatDate } from "../utils/calculations";
 
 export function AdminDashboard() {
@@ -48,7 +48,6 @@ export function AdminDashboard() {
     totalActiveSubscriptions: 0,
   });
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
-  const [users, setUsers] = useState<User[]>([]);
   const [selectedSubscription, setSelectedSubscription] =
     useState<Subscription | null>(null);
   const [detailsOpened, { open: openDetails, close: closeDetails }] =
@@ -62,11 +61,7 @@ export function AdminDashboard() {
 
   const loadData = () => {
     const allSubscriptions = LocalStorage.get<Subscription>("subscriptions");
-    const allUsers = LocalStorage.get<User>("users");
-
     setSubscriptions(allSubscriptions);
-    setUsers(allUsers);
-
     calculateMetrics(allSubscriptions);
   };
 
@@ -185,6 +180,14 @@ export function AdminDashboard() {
     });
   };
 
+  const handleDateFromChange = (value: string | null) => {
+    setDateFrom(value ? new Date(value) : null);
+  };
+
+  const handleDateToChange = (value: string | null) => {
+    setDateTo(value ? new Date(value) : null);
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
@@ -239,7 +242,7 @@ export function AdminDashboard() {
                 label="From Date"
                 placeholder="Select start date"
                 value={dateFrom}
-                onChange={setDateFrom}
+                onChange={handleDateFromChange}
                 leftSection={<IconCalendar size={16} />}
                 clearable
               />
@@ -247,7 +250,7 @@ export function AdminDashboard() {
                 label="To Date"
                 placeholder="Select end date"
                 value={dateTo}
-                onChange={setDateTo}
+                onChange={handleDateToChange}
                 leftSection={<IconCalendar size={16} />}
                 minDate={dateFrom || undefined}
                 clearable
