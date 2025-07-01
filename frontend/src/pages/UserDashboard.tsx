@@ -92,9 +92,11 @@ export function UserDashboard() {
   const handleCancelSubscription = () => {
     if (!selectedSubscription) return;
 
-    LocalStorage.update("subscriptions", selectedSubscription.id, {
-      status: "cancelled" as const,
-    });
+    LocalStorage.update<Subscription>(
+      "subscriptions",
+      selectedSubscription.id,
+      { status: "cancelled" }
+    );
 
     setSubscriptions((prev) =>
       prev.map((sub) =>

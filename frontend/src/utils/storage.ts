@@ -19,13 +19,12 @@ export class LocalStorage {
     key: string,
     id: string,
     updates: Partial<T>
-  ): void {
-    const items = this.get<T>(key);
-    const index = items.findIndex((item) => item.id === id);
-    if (index !== -1) {
-      items[index] = { ...items[index], ...updates };
-      this.set(key, items);
-    }
+  ) {
+    const items: T[] = LocalStorage.get<T>(key);
+    const updatedItems = items.map((item) =>
+      item.id === id ? { ...item, ...updates } : item
+    );
+    localStorage.setItem(key, JSON.stringify(updatedItems));
   }
 
   static delete<T extends { id: string }>(key: string, id: string): void {
