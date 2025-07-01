@@ -1,0 +1,118 @@
+.header {
+  height: rem(70px);
+  padding: var(--mantine-spacing-md);
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  display: block;
+  line-height: 1;
+  padding: rem(8px) rem(12px);
+  border-radius: rem(6px);
+  text-decoration: none;
+  color: var(--mantine-color-gray-7);
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+  margin: 0 rem(4px);
+  transition: all 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+  background: transparent;
+  border: none;
+
+  &:hover {
+    color: var(--mantine-color-gray-8);
+    background-color: var(--mantine-color-gray-0);
+  }
+
+  [data-mantine-color-scheme="dark"] & {
+    color: var(--mantine-color-gray-3);
+  }
+
+  [data-mantine-color-scheme="dark"] &:hover {
+    background-color: var(--mantine-color-dark-6);
+    color: var(--mantine-color-gray-1);
+  }
+}
+
+.link[data-active] {
+  background: var(--mantine-color-green-6);
+  color: white;
+  font-weight: 600;
+  padding: rem(14px) rem(32px);
+  border-radius: rem(12px);
+  box-shadow: none;
+  border: none;
+  margin: 0 rem(6px);
+
+  &:hover {
+    background: var(--mantine-color-green-7);
+    color: white;
+    transform: none;
+  }
+
+  [data-mantine-color-scheme="dark"] & {
+    background: var(--mantine-color-green-6);
+    color: white;
+  }
+
+  [data-mantine-color-scheme="dark"] &:hover {
+    background: var(--mantine-color-green-7);
+    color: white;
+  }
+}
+
+/* Mobile drawer styles */
+.mobileLink {
+  display: block;
+  line-height: 1;
+  padding: rem(12px) rem(16px);
+  border-radius: rem(6px);
+  text-decoration: none;
+  color: var(--mantine-color-gray-7);
+  font-size: var(--mantine-font-size-md);
+  font-weight: 500;
+  margin: rem(4px) 0;
+  transition: all 0.2s ease;
+  background: transparent;
+
+  &:hover {
+    background-color: var(--mantine-color-gray-0);
+    color: var(--mantine-color-gray-8);
+  }
+
+  [data-mantine-color-scheme="dark"] & {
+    color: var(--mantine-color-gray-3);
+  }
+
+  [data-mantine-color-scheme="dark"] &:hover {
+    background-color: var(--mantine-color-dark-6);
+    color: var(--mantine-color-gray-1);
+  }
+}
+
+.mobileLink[data-active] {
+  background: var(--mantine-color-green-6);
+  color: white;
+  font-weight: 600;
+  padding: rem(16px) rem(32px);
+  border-radius: rem(12px);
+  box-shadow: none;
+  border: none;
+
+  &:hover {
+    background: var(--mantine-color-green-7);
+    color: white;
+  }
+
+  [data-mantine-color-scheme="dark"] & {
+    background: var(--mantine-color-green-6);
+    color: white;
+  }
+
+  [data-mantine-color-scheme="dark"] &:hover {
+    background: var(--mantine-color-green-7);
+    color: white;
+  }
+}
